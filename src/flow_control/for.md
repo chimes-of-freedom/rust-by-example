@@ -46,6 +46,19 @@ fn main() {
 }
 ```
 
+Just remember that even though you can compile the code when a>b, the loop gets 
+never executed.
+```rust,editable
+for i in 10..1{
+println!("fizzbuzz");
+}
+```
+If you want to count down, you need to use .rev() instead
+```rust,editable
+for i in (1..10).rev(){
+println!("fizzbuzz");
+}
+```
 ## for and iterators
 
 The `for in` construct is able to interact with an `Iterator` in several ways.
@@ -80,7 +93,7 @@ fn main() {
   data is provided. Once the collection has been consumed it is no longer
   available for reuse as it has been 'moved' within the loop.
 
-```rust,editable,ignore,mdbook-runnable
+```rust,editable
 fn main() {
     let names = vec!["Bob", "Frank", "Ferris"];
 
@@ -91,8 +104,9 @@ fn main() {
         }
     }
 
-    println!("names: {:?}", names);
-    // FIXME ^ Comment out this line
+    // `names` has been 'moved' and can no longer be used.
+    // Try uncommenting the line below to see the compiler error:
+    // println!("names: {:?}", names);
 }
 ```
 
